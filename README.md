@@ -6,5 +6,7 @@ cmake -G Ninja -S . -B build \
   -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
 
 cd build
+
 cmake --build .
+
 ctest

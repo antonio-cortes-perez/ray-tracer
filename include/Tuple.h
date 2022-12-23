@@ -32,42 +32,42 @@ struct Vector : Tuple {
   }
 };
 
-std::ostream &operator<<(std::ostream &os, const Tuple &t) {
+inline std::ostream &operator<<(std::ostream &os, const Tuple &t) {
   return os << "T(" << t.x << ", " << t.y << ", " << t.z << ", " << t.w << ")";
 }
 
-std::ostream &operator<<(std::ostream &os, const Point &p) {
+inline std::ostream &operator<<(std::ostream &os, const Point &p) {
   return os << "P(" << p.x << ", " << p.y << ", " << p.z << ")";
 }
 
-std::ostream &operator<<(std::ostream &os, const Vector &v) {
+inline std::ostream &operator<<(std::ostream &os, const Vector &v) {
   return os << "V(" << v.x << ", " << v.y << ", " << v.z << ")";
 }
 
-bool eqf(float a, float b, float epsilon = 0.00001f) {
+inline bool eqf(float a, float b, float epsilon = 0.00001f) {
   return fabs(a - b) < epsilon;
 }
 
-bool operator==(const Tuple &t0, const Tuple &t1) {
+inline bool operator==(const Tuple &t0, const Tuple &t1) {
   return eqf(t0.x, t1.x) && eqf(t0.y, t1.y) && eqf(t0.z, t1.z) &&
          eqf(t0.w, t1.w);
 }
 
-Tuple operator+(const Tuple &t0, const Tuple &t1) {
+inline Tuple operator+(const Tuple &t0, const Tuple &t1) {
   return {t0.x + t1.x, t0.y + t1.y, t0.z + t1.z, t0.w + t1.w};
 }
 
-Tuple operator-(const Tuple &t0, const Tuple &t1) {
+inline Tuple operator-(const Tuple &t0, const Tuple &t1) {
   return {t0.x - t1.x, t0.y - t1.y, t0.z - t1.z, t0.w - t1.w};
 }
 
-Tuple operator-(const Tuple &t) { return Tuple(-t.x, -t.y, -t.z, -t.w); }
+inline Tuple operator-(const Tuple &t) { return Tuple(-t.x, -t.y, -t.z, -t.w); }
 
-Tuple operator*(const Tuple &t, float s) {
+inline Tuple operator*(const Tuple &t, float s) {
   return Tuple(s * t.x, s * t.y, s * t.z, s * t.w);
 }
 
-Tuple operator/(const Tuple &t, float d) {
+inline Tuple operator/(const Tuple &t, float d) {
   return Tuple(t.x / d, t.y / d, t.z / d, t.w / d);
 }
 

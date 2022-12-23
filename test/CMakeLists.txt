@@ -5,14 +5,16 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(googletest)
 
-add_executable(
-  TupleTest
-  TupleTest.cpp
-)
-target_link_libraries(
-  TupleTest
-  GTest::gtest_main
-)
+add_executable(TupleTest TupleTest.cpp)
+target_link_libraries(TupleTest GTest::gtest_main)
+
+add_executable(ColorTest ColorTest.cpp)
+target_link_libraries(ColorTest GTest::gtest_main)
+
+add_executable(CanvasTest CanvasTest.cpp)
+target_link_libraries(CanvasTest GTest::gtest_main Canvas)
 
 include(GoogleTest)
 gtest_discover_tests(TupleTest)
+gtest_discover_tests(ColorTest)
+gtest_discover_tests(CanvasTest)
