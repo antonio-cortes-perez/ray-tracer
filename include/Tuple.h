@@ -4,11 +4,14 @@
 #include <cmath>
 #include <ostream>
 
+#include "Util.h"
+
 namespace ray_tracer {
 
 struct Tuple {
   float x, y, z, w;
   Tuple(float x, float y, float z, float w) : x(x), y(y), z(z), w(w) {}
+  Tuple() : Tuple(0, 0, 0, 0) {}
 };
 
 struct Point : Tuple {
@@ -42,10 +45,6 @@ inline std::ostream &operator<<(std::ostream &os, const Point &p) {
 
 inline std::ostream &operator<<(std::ostream &os, const Vector &v) {
   return os << "V(" << v.x << ", " << v.y << ", " << v.z << ")";
-}
-
-inline bool eqf(float a, float b, float epsilon = 0.00001f) {
-  return fabs(a - b) < epsilon;
 }
 
 inline bool operator==(const Tuple &t0, const Tuple &t1) {

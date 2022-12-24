@@ -4,6 +4,8 @@
 #include <cmath>
 #include <ostream>
 
+#include "Util.h"
+
 namespace ray_tracer {
 
 struct Color {
@@ -14,10 +16,6 @@ struct Color {
 
 inline std::ostream &operator<<(std::ostream &os, const Color &c) {
   return os << "C(" << c.r << ", " << c.g << ", " << c.b << ")";
-}
-
-inline bool eqf(float a, float b, float epsilon = 0.00001f) {
-  return fabs(a - b) < epsilon;
 }
 
 inline bool operator==(const Color &c0, const Color &c1) {
