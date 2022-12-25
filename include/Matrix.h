@@ -1,7 +1,7 @@
 #ifndef MATRIX_H_
 #define MATRIX_H_
 
-#include <cmath>
+#include <array>
 
 #include "Tuple.h"
 
@@ -37,13 +37,11 @@ inline M4x4 mult(const M4x4 &a, const M4x4 &b) {
   return c;
 }
 
-inline Tuple mult(const M4x4 &m, const Tuple &t) {
-  Tuple r;
-  r.x = m[0][0] * t.x + m[0][1] * t.y + m[0][2] * t.z + m[0][3] * t.w;
-  r.y = m[1][0] * t.x + m[1][1] * t.y + m[1][2] * t.z + m[1][3] * t.w;
-  r.z = m[2][0] * t.x + m[2][1] * t.y + m[2][2] * t.z + m[2][3] * t.w;
-  r.w = m[3][0] * t.x + m[3][1] * t.y + m[3][2] * t.z + m[3][3] * t.w;
-  return r;
+template <typename T> inline T mult(const M4x4 &m, const T &t) {
+  return {m[0][0] * t.x + m[0][1] * t.y + m[0][2] * t.z + m[0][3] * t.w,
+          m[1][0] * t.x + m[1][1] * t.y + m[1][2] * t.z + m[1][3] * t.w,
+          m[2][0] * t.x + m[2][1] * t.y + m[2][2] * t.z + m[2][3] * t.w,
+          m[3][0] * t.x + m[3][1] * t.y + m[3][2] * t.z + m[3][3] * t.w};
 }
 
 inline M4x4 transpose(const M4x4 &m) {

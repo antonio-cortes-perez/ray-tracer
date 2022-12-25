@@ -5,6 +5,8 @@
 
 namespace ray_tracer {
 
+#define PI 3.14159265f
+
 inline bool eqf(float a, float b, float epsilon = 0.00001f) {
   return fabs(a - b) < epsilon;
 }

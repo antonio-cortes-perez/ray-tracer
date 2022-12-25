@@ -17,8 +17,12 @@ target_link_libraries(CanvasTest GTest::gtest_main Canvas)
 add_executable(MatrixTest MatrixTest.cpp)
 target_link_libraries(MatrixTest GTest::gtest_main)
 
+add_executable(TransformationsTest TransformationsTest.cpp)
+target_link_libraries(TransformationsTest GTest::gtest_main)
+
 include(GoogleTest)
 gtest_discover_tests(TupleTest)
 gtest_discover_tests(ColorTest)
 gtest_discover_tests(CanvasTest)
 gtest_discover_tests(MatrixTest)
+gtest_discover_tests(TransformationsTest)

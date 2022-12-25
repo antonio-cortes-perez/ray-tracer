@@ -1,6 +1,7 @@
 #ifndef TUPLE_H_
 #define TUPLE_H_
 
+#include <cassert>
 #include <cmath>
 #include <ostream>
 
@@ -11,15 +12,18 @@ namespace ray_tracer {
 struct Tuple {
   float x, y, z, w;
   Tuple(float x, float y, float z, float w) : x(x), y(y), z(z), w(w) {}
-  Tuple() : Tuple(0, 0, 0, 0) {}
 };
 
 struct Point : Tuple {
-  Point(float x, float y, float z) : Tuple(x, y, z, 1.0f) {}
+  Point(float x, float y, float z, float w = 1.0f) : Tuple(x, y, z, w) {
+    assert(eqf(w, 1.0f));
+  }
 };
 
 struct Vector : Tuple {
-  Vector(float x, float y, float z) : Tuple(x, y, z, 0.0f) {}
+  Vector(float x, float y, float z, float w = 0.0f) : Tuple(x, y, z, w) {
+    assert(eqf(w, 0.0f));
+  }
 
   float magnitude() { return sqrtf(x * x + y * y + z * z + w * w); }
 
