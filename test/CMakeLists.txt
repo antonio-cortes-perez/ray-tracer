@@ -20,9 +20,13 @@ target_link_libraries(MatrixTest GTest::gtest_main)
 add_executable(TransformationsTest TransformationsTest.cpp)
 target_link_libraries(TransformationsTest GTest::gtest_main)
 
+add_executable(RayTest RayTest.cpp)
+target_link_libraries(RayTest GTest::gtest_main)
+
 include(GoogleTest)
 gtest_discover_tests(TupleTest)
 gtest_discover_tests(ColorTest)
 gtest_discover_tests(CanvasTest)
 gtest_discover_tests(MatrixTest)
 gtest_discover_tests(TransformationsTest)
+gtest_discover_tests(RayTest)

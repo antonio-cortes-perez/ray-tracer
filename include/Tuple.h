@@ -18,12 +18,16 @@ struct Point : Tuple {
   Point(float x, float y, float z, float w = 1.0f) : Tuple(x, y, z, w) {
     assert(eqf(w, 1.0f));
   }
+
+  Point(Tuple &&t) : Point(t.x, t.y, t.z, t.w) {}
 };
 
 struct Vector : Tuple {
   Vector(float x, float y, float z, float w = 0.0f) : Tuple(x, y, z, w) {
     assert(eqf(w, 0.0f));
   }
+
+  Vector(Tuple &&t) : Vector(t.x, t.y, t.z, t.w) {}
 
   float magnitude() { return sqrtf(x * x + y * y + z * z + w * w); }
 
