@@ -9,7 +9,7 @@ namespace ray_tracer {
 
 struct Object {
   M4x4 transform = I4x4;
-  void applyTransform(const M4x4 &t) { transform = mult(transform, t); }
+  void applyTransform(const M4x4 &t) { transform = mult(t, transform); }
 };
 
 struct Sphere : Object {
