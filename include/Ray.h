@@ -3,20 +3,10 @@
 
 #include <vector>
 
+#include "Object.h"
 #include "Transformations.h"
 
 namespace ray_tracer {
-
-struct Object {
-  M4x4 transform = I4x4;
-  void applyTransform(const M4x4 &t) { transform = mult(t, transform); }
-};
-
-struct Sphere : Object {
-  float radius;
-  Point center;
-  Sphere() : radius(1), center(Point(0, 0, 0)) {}
-};
 
 struct Intersection {
   float t;
