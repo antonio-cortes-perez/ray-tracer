@@ -26,9 +26,9 @@ TEST(RayTest, IntersectSphereFront) {
   Intersections xs = r.intersect(s);
   EXPECT_EQ(xs.size(), 2);
   EXPECT_FLOAT_EQ(xs[0].t, 4);
-  EXPECT_EQ(xs[0].o, &s);
+  EXPECT_EQ(xs[0].object, &s);
   EXPECT_FLOAT_EQ(xs[1].t, 6);
-  EXPECT_EQ(xs[1].o, &s);
+  EXPECT_EQ(xs[1].object, &s);
 }
 
 TEST(RayTest, IntersectSphereTangent) {
@@ -37,9 +37,9 @@ TEST(RayTest, IntersectSphereTangent) {
   Intersections xs = r.intersect(s);
   EXPECT_EQ(xs.size(), 2);
   EXPECT_FLOAT_EQ(xs[0].t, 5);
-  EXPECT_EQ(xs[0].o, &s);
+  EXPECT_EQ(xs[0].object, &s);
   EXPECT_FLOAT_EQ(xs[1].t, 5);
-  EXPECT_EQ(xs[1].o, &s);
+  EXPECT_EQ(xs[1].object, &s);
 }
 
 TEST(RayTest, NoIntersectSphere) {
@@ -55,9 +55,9 @@ TEST(RayTest, IntersectSphereInside) {
   Intersections xs = r.intersect(s);
   EXPECT_EQ(xs.size(), 2);
   EXPECT_FLOAT_EQ(xs[0].t, -1);
-  EXPECT_EQ(xs[0].o, &s);
+  EXPECT_EQ(xs[0].object, &s);
   EXPECT_FLOAT_EQ(xs[1].t, 1);
-  EXPECT_EQ(xs[1].o, &s);
+  EXPECT_EQ(xs[1].object, &s);
 }
 
 TEST(RayTest, IntersectSphereBehind) {
@@ -66,9 +66,9 @@ TEST(RayTest, IntersectSphereBehind) {
   Intersections xs = r.intersect(s);
   EXPECT_EQ(xs.size(), 2);
   EXPECT_FLOAT_EQ(xs[0].t, -6);
-  EXPECT_EQ(xs[0].o, &s);
+  EXPECT_EQ(xs[0].object, &s);
   EXPECT_FLOAT_EQ(xs[1].t, -4);
-  EXPECT_EQ(xs[1].o, &s);
+  EXPECT_EQ(xs[1].object, &s);
 }
 
 TEST(RayTest, HitAllPositive) {

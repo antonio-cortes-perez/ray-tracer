@@ -40,9 +40,9 @@ int main() {
         continue;
       const Intersection *hit = r.hit(xs);
       Point point = r.position(hit->t);
-      Vector normal = hit->o->normalAt(point);
+      Vector normal = hit->object->normalAt(point);
       Vector eye = -r.direction;
-      Color c = lighting(hit->o->m, light, point, eye, normal);
+      Color c = lighting(hit->object->material, light, point, eye, normal);
       cv.set(x, y, c);
     }
   }

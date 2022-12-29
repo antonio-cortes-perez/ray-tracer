@@ -10,8 +10,8 @@ namespace ray_tracer {
 
 struct Intersection {
   float t;
-  const Object *o;
-  Intersection(float t, const Object *o) : t(t), o(o) {}
+  const Object *object;
+  Intersection(float t, const Object *object) : t(t), object(object) {}
 };
 
 using Intersections = std::vector<Intersection>;

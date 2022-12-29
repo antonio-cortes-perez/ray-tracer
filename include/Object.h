@@ -10,10 +10,10 @@ namespace ray_tracer {
 
 struct Object {
   M4x4 transform = I4x4;
-  const Material m{};
+  const Material material{};
 
   Object() = default;
-  Object(Material m) : m(m) {}
+  Object(Material material) : material(material) {}
 
   void applyTransform(const M4x4 &t) { transform = mult(t, transform); }
   virtual Vector normalAt(const Point &p) const = 0;
