@@ -41,6 +41,8 @@ struct Vector : Tuple {
   Vector cross(const Vector &v) {
     return Vector(y * v.z - z * v.y, z * v.x - x * v.z, x * v.y - y * v.x);
   }
+
+  Vector reflect(const Vector &normal);
 };
 
 inline std::ostream &operator<<(std::ostream &os, const Tuple &t) {
@@ -76,6 +78,10 @@ inline Tuple operator*(const Tuple &t, float s) {
 
 inline Tuple operator/(const Tuple &t, float d) {
   return Tuple(t.x / d, t.y / d, t.z / d, t.w / d);
+}
+
+Vector Vector::reflect(const Vector &normal) {
+  return *this - normal * 2 * dot(normal);
 }
 
 } // namespace ray_tracer

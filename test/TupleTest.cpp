@@ -116,3 +116,15 @@ TEST(TupleTest, Cross) {
   EXPECT_EQ(v0.cross(v1), Vector(-1, 2, -1));
   EXPECT_EQ(v1.cross(v0), Vector(1, -2, 1));
 }
+
+TEST(TupleTest, Reflect0) {
+  Vector v(1, -1, 0);
+  Vector n(0, 1, 0);
+  EXPECT_EQ(v.reflect(n), Vector(1, 1, 0));
+}
+
+TEST(TupleTest, Reflect1) {
+  Vector v(0, -1, 0);
+  Vector n(sqrtf(2) / 2, sqrtf(2) / 2, 0);
+  EXPECT_EQ(v.reflect(n), Vector(1, 0, 0));
+}

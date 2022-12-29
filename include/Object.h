@@ -3,20 +3,27 @@
 
 #include <vector>
 
+#include "Material.h"
 #include "Transformations.h"
 
 namespace ray_tracer {
 
 struct Object {
   M4x4 transform = I4x4;
+  const Material m{};
+
+  Object() = default;
+  Object(Material m) : m(m) {}
+
   void applyTransform(const M4x4 &t) { transform = mult(t, transform); }
   virtual Vector normalAt(const Point &p) = 0;
 };
 
 struct Sphere : Object {
-  float radius;
-  Point center;
-  Sphere() : radius(1), center(Point(0, 0, 0)) {}
+  float radius = 1;
+  Point center{0, 0, 0};
+  Sphere() = default;
+  Sphere(Material m) : Object(m) {}
 
   Vector normalAt(const Point &worldPoint) override {
     Point objectPoint = mult(inverse(transform), worldPoint);
