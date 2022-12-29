@@ -1,6 +1,7 @@
 #include <fstream>
 
 #include "Canvas.h"
+#include "Light.h"
 #include "Ray.h"
 
 using namespace ray_tracer;
@@ -13,15 +14,17 @@ int main() {
   float half = wallSize / 2;
 
   Canvas cv(canvasPixels, canvasPixels);
-  Color color(0.6, 0.8, 0.2);
   Point rayOrigin(0, 0, -5);
-  Sphere s;
-  s.applyTransform(scaling(0.5, 1, 1));
-  s.applyTransform(rotationZ(PI / 4));
-
-  for (Color &c : cv) {
-    c = Color(1, 1, 0.85);
-  }
+  Material m;
+  m.ambient = 0.3;
+  m.diffuse = 0.9;
+  m.specular = 0.4;
+  m.shininess = 10;
+  m.color = Color(0.15, 0.4, 0.9);
+  Sphere s(m);
+  s.applyTransform(scaling(1, 0.9, 1));
+  s.applyTransform(rotationZ(-PI / 8));
+  Light light(Point(10, 0, -6), Color(1, 1, 1));
 
   for (int y = 0; y < canvasPixels; ++y) {
     // top = +half, bottom = -half
@@ -33,9 +36,14 @@ int main() {
       Vector direction = target - rayOrigin;
       Ray r(rayOrigin, direction.normalize());
       Intersections xs = r.intersect(s);
-      if (!xs.empty()) {
-        cv.set(x, y, color);
-      }
+      if (xs.empty())
+        continue;
+      const Intersection *hit = r.hit(xs);
+      Point point = r.position(hit->t);
+      Vector normal = hit->o->normalAt(point);
+      Vector eye = -r.direction;
+      Color c = lighting(hit->o->m, light, point, eye, normal);
+      cv.set(x, y, c);
     }
   }
 

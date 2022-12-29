@@ -16,7 +16,7 @@ struct Object {
   Object(Material m) : m(m) {}
 
   void applyTransform(const M4x4 &t) { transform = mult(t, transform); }
-  virtual Vector normalAt(const Point &p) = 0;
+  virtual Vector normalAt(const Point &p) const = 0;
 };
 
 struct Sphere : Object {
@@ -25,7 +25,7 @@ struct Sphere : Object {
   Sphere() = default;
   Sphere(Material m) : Object(m) {}
 
-  Vector normalAt(const Point &worldPoint) override {
+  Vector normalAt(const Point &worldPoint) const override {
     Point objectPoint = mult(inverse(transform), worldPoint);
     Vector objectNormal = objectPoint - Point(0, 0, 0);
     // if transform includes a translation, then multiplying by its transpose

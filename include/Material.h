@@ -6,11 +6,11 @@
 namespace ray_tracer {
 
 struct Material {
-  const Color color{1, 1, 1};
-  const float ambient = 0.1;
-  const float diffuse = 0.9;
-  const float specular = 0.9;
-  const float shininess = 200;
+  Color color{1, 1, 1};
+  float ambient = 0.1;
+  float diffuse = 0.9;
+  float specular = 0.9;
+  float shininess = 200;
 
   Material() = default;
 
